@@ -23,14 +23,21 @@
             <td>{{ $project->title }}</td>
             <td>{{ $project->description }}</td>
             <td>{{ $project->image }}</td>
-            <td>{{ $project->image }}</td>
             <td>
                 <ul>
                     <li>
-                        <a href=""></a>
+                        <a href="{{ route('admin.projects.show', $project->id) }}"><i class="fas fa-eye"></i></a>
                     </li>
                     <li>
-                        <a href=""></a>
+                        <a href="{{ route('admin.projects.edit', $project->id) }}"><i class="fas fa-pencil"></i></a>
+                    <li>
+                        <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="delete" type="submit">
+                                <i class="fas fa-trash-can"></i>
+                            </button>
+                        </form>    
                     </li>
                 </ul>
             </td>

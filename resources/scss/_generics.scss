@@ -1,0 +1,20 @@
+th,
+td {
+    border: 1px solid red;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+
+    li {
+        padding: 5px;
+    }
+
+    .delete {
+        padding: none;
+        border: none;
+        background: transparent;
+    }
+
+}
