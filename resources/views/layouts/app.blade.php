@@ -27,9 +27,9 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     <div class="logo_laravel">
-                        <h1>Progetti</h1>
+                    
+                        <h1>{{ config('app.name') }}</h1>
                     </div>
-                    {{-- config('app.name', 'Progetti') --}}
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
