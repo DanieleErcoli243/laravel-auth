@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\ProjectController as AdminProjectsController;
 use App\Http\Controllers\Guest\HomeController as GuestHomeController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use Illuminate\Support\Facades\Route;
@@ -28,13 +28,13 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', AdminHomeController::class)->name('home');
 
     // rotte necessarie per il progetto
-    Route::get('/projects', [AdminHomeController::class, 'index'])->name('projects.index');
-    Route::get('/projects/create', [AdminHomeController::class, 'create'])->name('projects.create');
-    Route::get('/projects/{project}', [AdminHomeController::class, 'show'])->name('projects.show');
-    Route::post('/projects', [AdminHomeController::class, 'store'])->name('projects.store');
-    Route::get('/projects/{project}/edit', [AdminHomeController::class, 'edit'])->name('projects.edit');
-    Route::put('/projects/{project}', [AdminHomeController::class, 'update'])->name('projects.update');
-    Route::delete('/projects/{project}', [AdminHomeController::class, 'destroy'])->name('projects.destroy');
+    Route::get('/projects', [AdminProjectsController::class, 'index'])->name('projects.index');
+    Route::get('/projects/create', [AdminProjectsController::class, 'create'])->name('projects.create');
+    Route::get('/projects/{project}', [AdminProjectsController::class, 'show'])->name('projects.show');
+    Route::post('/projects', [AdminProjectsController::class, 'store'])->name('projects.store');
+    Route::get('/projects/{project}/edit', [AdminProjectsController::class, 'edit'])->name('projects.edit');
+    Route::put('/projects/{project}', [AdminProjectsController::class, 'update'])->name('projects.update');
+    Route::delete('/projects/{project}', [AdminProjectsController::class, 'destroy'])->name('projects.destroy');
 
 });
 
