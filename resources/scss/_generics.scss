@@ -1,6 +1,5 @@
-th,
-td {
-    border: 1px solid red;
+table {
+    margin-top: 50px;
 }
 
 ul {
@@ -15,6 +14,7 @@ ul {
         padding: none;
         border: none;
         background: transparent;
+        cursor: pointer;
     }
 
 }
