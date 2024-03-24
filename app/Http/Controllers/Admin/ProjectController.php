@@ -21,7 +21,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('admin.show');
     }
 
     /**
@@ -45,7 +45,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.edit');
     }
 
     /**
