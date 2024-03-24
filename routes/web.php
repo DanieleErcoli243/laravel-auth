@@ -25,18 +25,18 @@ Route::get('/', GuestHomeController::class)->name('guest.home');
 Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
 
     // rotta per la home dell'amministratore
-Route::get('/', AdminHomeController::class)->name('home');
+    Route::get('/', AdminHomeController::class)->name('home');
 
-// rotte necessarie per il progetto
-Route::get('/projects', AdminHomeController::class, 'index')->name('projects.index');
-Route::get('/projects/create', AdminHomeController::class, 'create')->name('projects.create');
-Route::get('/projects/{project}', AdminHomeController::class, 'show')->name('projects.show');
-Route::post('/projects', AdminHomeController::class, 'store')->name('projects.store');
-Route::get('/projects/{project}/edit', AdminHomeController::class, 'edit')->name('projects.edit');
-Route::put('/projects/{project}', AdminHomeController::class, 'update')->name('projects.update');
-Route::delete('/projects/{project}', AdminHomeController::class, 'destroy')->name('projects.destroy');
+    // rotte necessarie per il progetto
+    Route::get('/projects', [AdminHomeController::class, 'index'])->name('projects.index');
+    Route::get('/projects/create', [AdminHomeController::class, 'create'])->name('projects.create');
+    Route::get('/projects/{project}', [AdminHomeController::class, 'show'])->name('projects.show');
+    Route::post('/projects', [AdminHomeController::class, 'store'])->name('projects.store');
+    Route::get('/projects/{project}/edit', [AdminHomeController::class, 'edit'])->name('projects.edit');
+    Route::put('/projects/{project}', [AdminHomeController::class, 'update'])->name('projects.update');
+    Route::delete('/projects/{project}', [AdminHomeController::class, 'destroy'])->name('projects.destroy');
 
-})
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
