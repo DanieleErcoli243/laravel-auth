@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //rotta per la home dell'utente 
 Route::get('/', GuestHomeController::class)->name('guest.home');
 
-
+// rotte raggruppate per l'amministratore
 
 Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
 
