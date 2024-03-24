@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} | @yield('title)</title>
 
 
     <!-- Fonts -->
@@ -17,6 +17,9 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+
+    @yield('cdns')
+
 </head>
 
 <body>
@@ -81,10 +84,11 @@
             </div>
         </nav>
 
-        <main class="">
+        <main class="container">
             @yield('content')
         </main>
     </div>
+    @yield('scripts')
 </body>
 
 </html>
