@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use App\Models\Project;
 
 class ProjectSeeder extends Seeder
@@ -126,8 +127,8 @@ class ProjectSeeder extends Seeder
 
         foreach ($projects as $project) {
             $new_project = new Project();
-
             $new_project->fill($project);
+            
 
             $new_project->save();
         }
