@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Guest\HomeController as GuestHomeController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//rotta per la home dell'utente 
+Route::get('/', GuestHomeController::class)->name('guest.home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// rotta per la home dell'amministratore
+Route::get('/admin', AdminHomeController::class)->middleware(['auth', 'verified'])->name('admin.home');
+
+// rotte necessarie per il progetto
+Route::get('/projects', AdminHomeController::class, 'index')->name('projects.index');
+Route::get('/projects/create', AdminHomeController::class, 'create')->name('projects.create');
+Route::get('/projects/{project}', AdminHomeController::class, 'show')->name('projects.show');
+Route::post('/projects', AdminHomeController::class, 'store')->name('projects.store');
+Route::get('/projects/{project}/edit', AdminHomeController::class, 'edit')->name('projects.edit');
+Route::put('/projects/{project}', AdminHomeController::class, 'update')->name('projects.update');
+Route::delete('/projects/{project}', AdminHomeController::class, 'destroy')->name('projects.destroy');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
