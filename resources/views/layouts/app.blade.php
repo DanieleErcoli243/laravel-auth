@@ -36,9 +36,9 @@
        @include('includes.layouts.navbar')
        
         <main class="container">
-        @session('message')
+        
         @include('includes.layouts.alert')
-        @endsession
+       
         @yield('content')
         </main>
     </div>
