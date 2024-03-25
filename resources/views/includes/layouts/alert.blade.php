@@ -1,4 +1,4 @@
 <div class="alert">
-    <p><?= $error ?></p>
+    <p>{{ $value }}</p>
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 </div>
