@@ -2,7 +2,7 @@
 
 @section('title', 'Crea progetto')
 
-@section(content)
+@section('content')
 
 @include('includes.layouts.form')
 

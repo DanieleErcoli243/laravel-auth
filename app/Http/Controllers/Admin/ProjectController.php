@@ -73,13 +73,13 @@ class ProjectController extends Controller
             'image'=> 'nullable|url:http, https',
         ]);
 
-        $project = new Project();
+        
 
         $project->fill($data);
 
         $project->save();
 
-        return view('admin.project.show', $project->id); 
+        return to_route('admin.project.show', $project->id); 
     }
 
     /**
