@@ -22,7 +22,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        return view('admin.create', ['project' => new Project()]);
     }
 
     /**
@@ -30,7 +30,19 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title'=>'unique:projects|string|required',
+            'description'=> 'required|string',
+            'image'=> 'nullable|url:http, https',
+        ]);
+
+        $project = new Project();
+
+        $project->fill($data);
+
+        $project->save();
+
+        return to_route('admin.projects.index');
     }
 
     /**
@@ -46,7 +58,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.edit');
+        return view('admin.edit', compact('project'));
     }
 
     /**
@@ -54,6 +66,18 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        $data = $request->validate([
+            'title'=>[Rule::unique(projects)->ignore($project->id), 'string', 'required'],
+            'description'=> 'required|string',
+            'image'=> 'nullable|url:http, https',
+        ]);
+
+        $project = new Project();
+
+        $project->fill($data);
+
+        $project->save();
+
         return view('admin.update', $project->id); 
     }
 
@@ -62,6 +86,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return to_route('admin.projects.index');
     }
 }
