@@ -79,7 +79,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        return view('admin.update', $project->id); 
+        return view('admin.project.show', $project->id); 
     }
 
     /**
