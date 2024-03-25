@@ -23,11 +23,19 @@
             <a href="{{ route('admin.projects.edit', $project->id) }}">
                 <i class="fas fa-pencil"></i>
             </a>
-            <a href="{{ route('admin.projects.destroy', $project->id) }}">
-                <i class="fas fa-trash-can"></i>
-            </a>
+            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="deleting-form">
+                @csrf
+                @method('DELETE')
+                <button class="delete" type="submit">
+                    <i class="fas fa-trash-can"></i>
+                </button>
+            </form>    
         </div>
 
     </div>
 
+@endsection
+
+@section('scripts')
+@vite('resources/js/delete-confirmation.js')
 @endsection
