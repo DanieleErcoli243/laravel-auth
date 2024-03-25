@@ -6,7 +6,7 @@
 @else
 <form action="{{ route('admin.projects.store') }}" method="POST">
     @csrf
-    @endif   
+@endif   
     <div class="form-row">
         <label for="title">Inserisci titolo</label>
         <input type="text" id="title" name="title" value="{{ old('title', $project->title)}}" >

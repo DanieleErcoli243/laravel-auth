@@ -23,7 +23,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.create', ['project' => new Project()]);
+        $project = new Project();
+        return view('admin.create', compact('project'));
     }
 
     /**
@@ -68,7 +69,7 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $data = $request->validate([
-            'title'=>[Rule::unique('projects')->ignore($project->title), 'string', 'required'],
+            'title'=>[Rule::unique('projects')->ignore($project->id), 'string', 'required'],
             'description'=> 'required|string',
             'image'=> 'nullable|url:http, https',
         ]);
@@ -77,9 +78,9 @@ class ProjectController extends Controller
 
         $project->fill($data);
 
-        $project->save();
+        $project->update($data);
 
-        return to_route('admin.project.show', $project->id); 
+        return to_route('admin.projects.show', $project); 
     }
 
     /**
