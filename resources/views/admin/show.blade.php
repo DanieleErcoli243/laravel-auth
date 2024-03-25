@@ -14,6 +14,13 @@
             <h3>{{ $project->title }}</h3>
             <p>{{ $project->description }}</p>
         </div>
+        <div class="update-box">
+            <a href="{{ route('admin.projects.edit', $project->id) }}">
+                <i class="fas fa-pencil"></i>
+
+            </a>
+
+        </div>
     </div>
 
 @endsection
