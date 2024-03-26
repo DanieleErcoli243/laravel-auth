@@ -24,7 +24,7 @@ class ProjectController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
         $project = new Project();
         return view('admin.create', compact('project'));
     }
@@ -34,10 +34,11 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+       
         $data = $request->validate([
             'title'=>'unique:projects|string|required',
             'description'=> 'required|string',
-            'image'=> 'nullable|image|mimes:png, jpg',
+            'image'=> 'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
         $project = new Project();
@@ -67,6 +68,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+      
         return view('admin.edit', compact('project'));
     }
 
@@ -78,7 +80,7 @@ class ProjectController extends Controller
         $data = $request->validate([
             'title'=>[Rule::unique('projects')->ignore($project->id), 'string', 'required'],
             'description'=> 'required|string',
-            'image'=> 'nullable|image|mimes:png, jpg, jpeg',
+            'image'=> 'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
         if(Arr::exists($data, 'image')){
