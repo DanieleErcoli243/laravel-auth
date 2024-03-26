@@ -9,7 +9,7 @@
     <div class="show-card">
         <div>
             <figure>
-                <img src="{{ $project->image }}" alt="{{ $project->title }}">
+                <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}">
             </figure>
         </div>
         <div>
