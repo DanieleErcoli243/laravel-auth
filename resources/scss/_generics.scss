@@ -1,5 +1,18 @@
 table {
     margin-top: 50px;
+    border: 1px solid green;
+
+
+    th,
+    td {
+        border: 1px solid green;
+    }
+
+    .action-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 ul {
