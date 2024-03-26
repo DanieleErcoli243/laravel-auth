@@ -6,6 +6,8 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -35,12 +37,17 @@ class ProjectController extends Controller
         $data = $request->validate([
             'title'=>'unique:projects|string|required',
             'description'=> 'required|string',
-            'image'=> 'nullable|url:http, https',
+            'image'=> 'nullable|image|mimes:png, jpg',
         ]);
 
         $project = new Project();
 
         $project->fill($data);
+
+        if(Arr::exists($data, 'image')){
+           $img_url =  Storage::putFile('project_images', $data['image']);
+           $project->image = $img_url;
+        }
 
         $project->save();
 
@@ -71,10 +78,13 @@ class ProjectController extends Controller
         $data = $request->validate([
             'title'=>[Rule::unique('projects')->ignore($project->id), 'string', 'required'],
             'description'=> 'required|string',
-            'image'=> 'nullable|url:http, https',
+            'image'=> 'nullable|image|mimes:png, jpg, jpeg',
         ]);
 
-        
+        if(Arr::exists($data, 'image')){
+            $img_url =  Storage::putFile('project_images', $data['image']);
+            $project->image = $img_url;
+         }; 
 
         $project->fill($data);
 
